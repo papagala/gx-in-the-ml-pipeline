@@ -1,0 +1,17 @@
+services:
+  notebook:
+    image: gx-in-the-ml-pipeline-notebook
+    container_name: gx-in-the-ml-pipeline-notebook
+    build:
+      context: ./environment
+      dockerfile: notebook.Dockerfile
+    networks:
+      - gxnet
+    ports:
+      - 8888:8888
+    volumes:
+      - ./notebooks:/notebooks
+
+networks:
+  gxnet:
+    driver: bridge
