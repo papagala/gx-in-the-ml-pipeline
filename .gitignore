@@ -166,3 +166,6 @@ environment/poetry.lock
 
 # Don't version control fetched data.
 notebooks/data
+
+# Ignore notebook trash.
+notebooks/.Trash*
