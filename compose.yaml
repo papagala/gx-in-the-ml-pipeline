@@ -11,7 +11,24 @@ services:
       - 8888:8888
     volumes:
       - ./notebooks:/notebooks
+      - gx_volume:/gx/gx_volume
+
+  datadocs:
+    image: gx-in-the-ml-pipeline-datadocs
+    container_name: gx-in-the-ml-pipeline-datadocs
+    build:
+      context: ./environment
+      dockerfile: datadocs.Dockerfile
+    networks:
+      - gxnet
+    ports:
+      - 3000:3000
+    volumes:
+      - gx_volume:/gx/gx_volume:ro
 
 networks:
   gxnet:
     driver: bridge
+
+volumes:
+  gx_volume:
