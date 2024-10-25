@@ -164,8 +164,9 @@ cython_debug/
 # Ignore demo poetry builds in environment/.
 environment/poetry.lock
 
-# Don't version control fetched data.
+# Don't version control local data and ml artifacts.
 notebooks/data
+notebooks/mlruns
 
 # Ignore notebook trash.
 notebooks/.Trash*

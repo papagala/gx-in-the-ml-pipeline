@@ -5,6 +5,8 @@ services:
     build:
       context: ./environment
       dockerfile: notebook.Dockerfile
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
     networks:
       - gxnet
     ports:
@@ -25,6 +27,17 @@ services:
       - 3000:3000
     volumes:
       - gx_volume:/gx/gx_volume:ro
+
+  mlflow:
+    image: gx-in-the-ml-pipeline-mlflow
+    container_name: gx-in-the-ml-pipeline-mlflow
+    build:
+      context: ./environment
+      dockerfile: mlflow.Dockerfile
+    networks:
+      - gxnet
+    ports:
+      - 5000:5000
 
 networks:
   gxnet:

@@ -1,0 +1,167 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.13">
+  <diagram name="Page-1" id="jmqO2mEPA-x9yg1ztIpt">
+    <mxGraphModel dx="1308" dy="817" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="y7ALruSbJxyKwdajI3rj-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=16;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-1" target="y7ALruSbJxyKwdajI3rj-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-1" value="Download raw dataset" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-2" target="y7ALruSbJxyKwdajI3rj-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-2" value="Look at data dictionary" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="240" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-4" target="y7ALruSbJxyKwdajI3rj-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-4" target="y7ALruSbJxyKwdajI3rj-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-4" value="Pick a few expectations of the data" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-6" target="y7ALruSbJxyKwdajI3rj-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-6" value="Create Expectations" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-8" target="y7ALruSbJxyKwdajI3rj-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-8" value="Validate raw data with Expectations" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="480" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-10" value="Examine Validation Results as python object" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="580" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-12" target="y7ALruSbJxyKwdajI3rj-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-12" value="Clean data" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="600" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-10" target="y7ALruSbJxyKwdajI3rj-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="590" as="sourcePoint" />
+            <mxPoint x="670" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-17" target="y7ALruSbJxyKwdajI3rj-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-17" value="Create Expectations for training data" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="600" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-18" value="Look at Suite definitions and Validation Results in Data Docs" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="600" y="480" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-20" value="Train simple model" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="800" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-22" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-18" target="y7ALruSbJxyKwdajI3rj-20">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="635" as="sourcePoint" />
+            <mxPoint x="610" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-23" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="960" y="680" as="sourcePoint" />
+            <mxPoint x="960" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-25" target="y7ALruSbJxyKwdajI3rj-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-25" value="Deploy model" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-27" target="y7ALruSbJxyKwdajI3rj-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-27" value="Download set of data for inference" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-29" value="Data Scientist" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="80" y="180" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-31" value="Machine Learning Engineer" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="180" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-32" target="y7ALruSbJxyKwdajI3rj-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1220" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-32" target="y7ALruSbJxyKwdajI3rj-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-32" value="But how do they know if the data/data quality is suitable for inference?" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="260" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-36" target="y7ALruSbJxyKwdajI3rj-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-36" value="The need for the data scientist&#39;s Expectation Suite" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="400" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-37" value="&lt;div&gt;Look at Expectation Suite in&lt;/div&gt;GX Cloud" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="520" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-41" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1960" y="670" as="sourcePoint" />
+            <mxPoint x="1960" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-42" value="Stakeholder" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="2000" y="180" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-43" value="Look at Validation Results in GX Cloud" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="2020" y="265" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-47" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-44" target="y7ALruSbJxyKwdajI3rj-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-44" target="y7ALruSbJxyKwdajI3rj-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-44" value="Add pipeline/deployment check using shared Expectation Suite" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="265" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-46" value="Run inference/model pipeline" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1760" y="260" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-48" value="Add automated handling of bad rows based on Validation Results" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;strokeColor=#FF6310;strokeWidth=3;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="400" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-37" target="y7ALruSbJxyKwdajI3rj-44">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="320" as="sourcePoint" />
+            <mxPoint x="1500" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="y7ALruSbJxyKwdajI3rj-48" target="y7ALruSbJxyKwdajI3rj-46">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="575" as="sourcePoint" />
+            <mxPoint x="1530" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="y7ALruSbJxyKwdajI3rj-52" value="retraining pipeline might be more suitable&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="150" width="240" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
