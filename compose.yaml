@@ -6,6 +6,8 @@ services:
       context: ./environment
       dockerfile: notebook.Dockerfile
     environment:
+      GX_CLOUD_ORGANIZATION_ID: ${GX_CLOUD_RACHEL_SANDBOX_ORG_ID}
+      GX_CLOUD_ACCESS_TOKEN: ${GX_CLOUD_RACHEL_SANDBOX_ACCESS_TOKEN}
       MLFLOW_TRACKING_URI: http://mlflow:5000
     networks:
       - gxnet
@@ -34,10 +36,42 @@ services:
     build:
       context: ./environment
       dockerfile: mlflow.Dockerfile
+    environment:
+      MLFLOW_TRACKING_URI: http://0.0.0.0:5000
     networks:
       - gxnet
     ports:
       - 5000:5000
+      - 5555:5555
+
+  postgres:
+    image: postgres:15.3-alpine
+    restart: always
+    container_name: gx-in-the-ml-pipeline-postgres
+    environment:
+      POSTGRES_USER: gx_user
+      POSTGRES_PASSWORD: gx_user_password
+      POSTGRES_DB: demo
+    volumes:
+      - ./environment/init_postgres.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "gx_user", "-d", "demo"]
+      interval: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - gxnet
+    ports:
+      - 5432:5432
+
+  gx-agent:
+    image: greatexpectations/agent
+    container_name: gx-in-the-ml-pipeline-agent
+    environment:
+      GX_CLOUD_ORGANIZATION_ID : ${GX_CLOUD_RACHEL_SANDBOX_ORG_ID}
+      GX_CLOUD_ACCESS_TOKEN : ${GX_CLOUD_RACHEL_SANDBOX_ACCESS_TOKEN}
+    networks:
+      - gxnet
 
 networks:
   gxnet:
