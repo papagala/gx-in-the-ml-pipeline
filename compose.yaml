@@ -6,9 +6,9 @@ services:
       context: ./environment
       dockerfile: notebook.Dockerfile
     environment:
-      GX_CLOUD_ORGANIZATION_ID: ${GX_CLOUD_RACHEL_SANDBOX_ORG_ID}
-      GX_CLOUD_ACCESS_TOKEN: ${GX_CLOUD_RACHEL_SANDBOX_ACCESS_TOKEN}
-      MLFLOW_TRACKING_URI: http://mlflow:5000
+      - GX_CLOUD_ORGANIZATION_ID=${GX_CLOUD_ORGANIZATION_ID:?err}
+      - GX_CLOUD_ACCESS_TOKEN=${GX_CLOUD_ACCESS_TOKEN:?err}
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
     networks:
       - gxnet
     ports:
@@ -68,8 +68,8 @@ services:
     image: greatexpectations/agent
     container_name: gx-in-the-ml-pipeline-agent
     environment:
-      GX_CLOUD_ORGANIZATION_ID : ${GX_CLOUD_RACHEL_SANDBOX_ORG_ID}
-      GX_CLOUD_ACCESS_TOKEN : ${GX_CLOUD_RACHEL_SANDBOX_ACCESS_TOKEN}
+      - GX_CLOUD_ORGANIZATION_ID=${GX_CLOUD_ORGANIZATION_ID:?err}
+      - GX_CLOUD_ACCESS_TOKEN=${GX_CLOUD_ACCESS_TOKEN:?err}
     networks:
       - gxnet
 
