@@ -33,7 +33,7 @@ COL2DESCRIPTION = collections.OrderedDict(
         "slope": "Slope of the peak exercise ST segment; 1: upsloping, 2: flat, 3: downsloping",
         "ca": "Major vessels (0-3) colored by flourosopy",
         "thal": "Heart defect; 3 = normal; 6 = fixed defect; 7 = reversable defect",
-        "num": "Diagnosis of heart disease (target label)",
+        "num": "Diagnosis of heart disease (target label); 0: no heart disease present, 1: heart disease present",
     }
 )
 
@@ -83,7 +83,6 @@ FEATURE_COLUMNS = [
     "slope",
     "ca",
     "thal",
-    "num",
 ]
 
 
@@ -195,16 +194,17 @@ def clean_demo_data_from_gx_cloud_org(
     data_source_name: str,
     expectation_suite_names: List[str],
     validation_definition_names: List[str],
-    checkpoint_name: str,
+    checkpoint_names: List[str],
 ):
     """Delete specified demo data from the GX Cloud organization provided by the context."""
     # Remove Checkpoint.
     cloud_checkpoints = [x.name for x in context.checkpoints.all()]
     log.debug(f"Found GX Cloud Checkpoints: {cloud_checkpoints}")
 
-    if checkpoint_name in cloud_checkpoints:
-        context.checkpoints.delete(name=checkpoint_name)
-        log.info(f"Removed Checkpoint: {checkpoint_name}")
+    for x in checkpoint_names:
+        if x in cloud_checkpoints:
+            context.checkpoints.delete(name=x)
+            log.info(f"Removed Checkpoint: {x}")
 
     # Remove Validation Definitions.
     cloud_validation_definitions = [
