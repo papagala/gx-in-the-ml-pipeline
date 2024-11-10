@@ -184,7 +184,7 @@ def write_df_to_postgres(table_name: str, df: pd.DataFrame) -> int:
     """Write dataframe data to a postgres table."""
 
     engine = sqlalchemy.create_engine(POSTGRES_CONNECTION_STRING)
-    rows_written = df.to_sql("heart_disease", engine, if_exists="replace", index=False)
+    rows_written = df.to_sql(table_name, engine, if_exists="replace", index=False)
 
     return rows_written
 
