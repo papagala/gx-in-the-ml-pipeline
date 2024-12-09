@@ -1,49 +1,40 @@
-FROM ubuntu:22.04
+# Use Python 3.11.10 as the base image
+FROM python:3.11.10-bookworm
 
-USER root
-ENV DEBIAN_FRONTEND noninteractive
-ENV ROOT_HOME /root
+# Set environment variables for non-interactive installations
+ENV DEBIAN_FRONTEND=noninteractive
 
+# Install necessary system dependencies
 RUN apt-get update && \
-    apt-get -y install \
-        apt-utils \
-        build-essential \
-        curl \
-        git \
-        iputils-ping \
-        jq \
-        libbz2-dev \
-        libffi-dev \
-        liblzma-dev \
-        libreadline-dev \
-        libsqlite3-dev \
-        libssl-dev \
-        sudo \
-        wget \
-        vim \
-        zip \
-        zlib1g-dev && \
+    apt-get -y install --no-install-recommends \
+    build-essential \
+    curl \
+    git \
+    vim \
+    zip && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl https://pyenv.run | bash
+# Install Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 - && \
+    ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 
-ENV PYENV_ROOT /root/.pyenv
-ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
+# Set up the working directory and copy dependencies
+WORKDIR /app
+COPY pyproject.toml ./
 
-ENV PYTHON_VERSION 3.11.10
-RUN pyenv install $PYTHON_VERSION
-RUN pyenv global $PYTHON_VERSION
+# Install dependencies with Poetry
+RUN poetry config virtualenvs.create false && poetry install --no-dev
 
-# Requirements to run JupyterLab and install kernel for the poetry env.
-RUN pip install poetry ipykernel ipython jupyter jupyterlab
+# Install JupyterLab and link the Poetry environment to an IPython kernel
+RUN pip install jupyterlab ipykernel && \
+    python -m ipykernel install --user --name=gx-in-the-ml-pipeline
 
-# Install dependencies using poetry and create an ipykernel for poetry env.
-COPY pyproject.toml pyproject.toml
-RUN poetry install
-RUN poetry run python -m ipykernel install --user --name=gx-in-the-ml-pipeline
-
-# Use notebooks subdirectory for JupyterLab.
+# Use the /notebooks directory for JupyterLab
 WORKDIR /notebooks
 
-# Start JupyterLab, access via localhost:8888 in a host web browser.
-ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+# Expose port 8888 for JupyterLab
+EXPOSE 8888
+
+# Command to start JupyterLab
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--ServerApp.token=''", "--ServerApp.password=''"]

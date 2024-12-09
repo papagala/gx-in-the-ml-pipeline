@@ -91,3 +91,4 @@ waitress==3.0.1 ; platform_system == "Windows" and python_full_version == "3.11.
 werkzeug==3.1.2 ; python_full_version == "3.11.10"
 wrapt==1.16.0 ; python_full_version == "3.11.10"
 zipp==3.20.2 ; python_full_version == "3.11.10"
+virtualenv==20.17.0 ; python_full_version == "3.11.10"

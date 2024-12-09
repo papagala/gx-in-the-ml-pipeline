@@ -1,42 +1,40 @@
-FROM ubuntu:22.04
+# Use Python 3.11.10 as the base image
+FROM python:3.11.10-bookworm
 
-USER root
-ENV DEBIAN_FRONTEND noninteractive
-ENV ROOT_HOME /root
+# Set environment variables for non-interactive installations
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYENV_ROOT="/root/.pyenv"
+ENV PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 
+# Install necessary system dependencies and pyenv dependencies
 RUN apt-get update && \
-    apt-get -y install \
-        apt-utils \
-        build-essential \
-        curl \
-        git \
-        iputils-ping \
-        jq \
-        libbz2-dev \
-        libffi-dev \
-        liblzma-dev \
-        libreadline-dev \
-        libsqlite3-dev \
-        libssl-dev \
-        sudo \
-        wget \
-        vim \
-        zip \
-        zlib1g-dev && \
+    apt-get -y install --no-install-recommends \
+    curl \
+    git \
+    vim \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    libffi-dev && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl https://pyenv.run | bash
+# Install pyenv
+RUN git clone https://github.com/pyenv/pyenv.git $PYENV_ROOT && \
+    echo 'eval "$(pyenv init -)"' >> /root/.bashrc
 
-ENV PYENV_ROOT /root/.pyenv
-ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
+# Set working directory
+WORKDIR /app
 
-ENV PYTHON_VERSION 3.11.10
-RUN pyenv install $PYTHON_VERSION
-RUN pyenv global $PYTHON_VERSION
+# Copy and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-RUN pip install virtualenv
+# Expose MLflow server port
+EXPOSE 5000
 
-# Run MLflow tracking server.
+# Command to start the MLflow server
 CMD ["mlflow", "server", "--host", "0.0.0.0", "--port", "5000"]
