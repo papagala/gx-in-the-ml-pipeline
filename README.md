@@ -44,14 +44,14 @@ kubectl get services
 docker login -u oswaldodocker
 
 # Build images
-docker build -f ./environment/notebook.Dockerfile -t oswaldodocker/notebook:latest ./environment
-docker build -f ./environment/datadocs.Dockerfile -t oswaldodocker/datadocs:latest ./environment
-docker build -f ./environment/mlflow.Dockerfile -t oswaldodocker/mlflow:latest ./environment
+docker build -f ./environment/notebook.Dockerfile -t oswaldodocker/notebook:v3 ./environment
+docker build -f ./environment/datadocs.Dockerfile -t oswaldodocker/datadocs:v3 ./environment
+docker build -f ./environment/mlflow.Dockerfile -t oswaldodocker/mlflow:v3 ./environment
 
 # Push images
-docker push oswaldodocker/notebook:latest
-docker push oswaldodocker/datadocs:latest
-docker push oswaldodocker/mlflow:latest
+docker push oswaldodocker/notebook:v3
+docker push oswaldodocker/datadocs:v3
+docker push oswaldodocker/mlflow:v3
 ```
 
 ### Port Forwarding

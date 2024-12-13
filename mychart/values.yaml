@@ -7,7 +7,7 @@ postgres:
   database: demo
 
 images:
-  gxAgent: greatexpectations/agent:v3
+  gxAgent: greatexpectations/agent:latest
   datadocs: oswaldodocker/datadocs:v3
   postgres: postgres:15.3-alpine
   mlflow: oswaldodocker/mlflow:v3
