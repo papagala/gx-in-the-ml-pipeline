@@ -7,11 +7,11 @@ postgres:
   database: demo
 
 images:
-  gxAgent: greatexpectations/agent:latest
-  datadocs: oswaldodocker/datadocs:latest
+  gxAgent: greatexpectations/agent:v3
+  datadocs: oswaldodocker/datadocs:v3
   postgres: postgres:15.3-alpine
-  mlflow: oswaldodocker/mlflow:latest
-  notebook: oswaldodocker/notebook:v2.0
+  mlflow: oswaldodocker/mlflow:v3
+  notebook: oswaldodocker/notebook:v3
 
 # These should be empty by default and filled via --set-file or environment variables
 gxCloud:
