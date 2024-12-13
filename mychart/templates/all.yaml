@@ -1,0 +1,286 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gx-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: { { .Values.persistence.storageSize } }
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: { { .Values.persistence.storageSize } }
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: notebooks-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: { { .Values.persistence.storageSize } }
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gx-secrets
+type: Opaque
+stringData:
+  GX_CLOUD_ORGANIZATION_ID:
+    {
+      {
+        required "A GX Cloud Organization ID is required" .Values.gxCloud.organizationId,
+      },
+    }
+  GX_CLOUD_ACCESS_TOKEN:
+    {
+      {
+        required "A GX Cloud Access Token is required" .Values.gxCloud.accessToken,
+      },
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-script
+data:
+  init.sql: |
+    DO $$ BEGIN IF NOT EXISTS (
+      SELECT 1 FROM pg_roles WHERE rolname = '{{ .Values.postgres.user }}'
+    ) THEN CREATE USER {{ .Values.postgres.user }} WITH ENCRYPTED PASSWORD '{{ .Values.postgres.password }}';
+    END IF;
+    END $$;
+
+    DO $$ BEGIN IF NOT EXISTS (
+      SELECT 1 FROM pg_database WHERE datname = '{{ .Values.postgres.database }}'
+    ) THEN CREATE DATABASE {{ .Values.postgres.database }};
+    GRANT ALL PRIVILEGES ON DATABASE {{ .Values.postgres.database }} TO {{ .Values.postgres.user }};
+    GRANT ALL ON SCHEMA public TO {{ .Values.postgres.user }};
+    END IF;
+    END $$;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gx-agent-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gx-agent
+  template:
+    metadata:
+      labels:
+        app: gx-agent
+    spec:
+      containers:
+        - name: gx-agent
+          image: { { .Values.images.gxAgent } }
+          env:
+            - name: GX_CLOUD_ORGANIZATION_ID
+              valueFrom:
+                secretKeyRef:
+                  name: gx-secrets
+                  key: GX_CLOUD_ORGANIZATION_ID
+            - name: GX_CLOUD_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: gx-secrets
+                  key: GX_CLOUD_ACCESS_TOKEN
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datadocs-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datadocs
+  template:
+    metadata:
+      labels:
+        app: datadocs
+    spec:
+      containers:
+        - name: datadocs
+          image: oswaldodocker/datadocs:latest
+          imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datadocs-service
+spec:
+  selector:
+    app: datadocs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15.3-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: { { .Values.postgres.user } }
+            - name: POSTGRES_PASSWORD
+              value: { { .Values.postgres.password } }
+            - name: POSTGRES_DB
+              value: { { .Values.postgres.database } }
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+            - name: postgres-init
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+        - name: postgres-init
+          configMap:
+            name: postgres-init-script
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlflow
+  template:
+    metadata:
+      labels:
+        app: mlflow
+    spec:
+      containers:
+        - name: mlflow
+          image: oswaldodocker/mlflow:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+            - containerPort: 5555
+          env:
+            - name: MLFLOW_TRACKING_URI
+              value: "http://0.0.0.0:5000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlflow-service
+spec:
+  selector:
+    app: mlflow
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+    - name: ui
+      protocol: TCP
+      port: 5555
+      targetPort: 5555
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notebook-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notebook
+  template:
+    metadata:
+      labels:
+        app: notebook
+    spec:
+      containers:
+        - name: notebook
+          image: oswaldodocker/notebook:v2.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8888
+          env:
+            - name: GX_CLOUD_ORGANIZATION_ID
+              valueFrom:
+                secretKeyRef:
+                  name: gx-secrets
+                  key: GX_CLOUD_ORGANIZATION_ID
+            - name: GX_CLOUD_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: gx-secrets
+                  key: GX_CLOUD_ACCESS_TOKEN
+            - name: MLFLOW_TRACKING_URI
+              value: "http://mlflow-service.default.svc.cluster.local:5000"
+          volumeMounts:
+            - name: notebooks-volume
+              mountPath: /home/jovyan/work
+            - name: gx-volume
+              mountPath: /gx/gx_volume
+      volumes:
+        - name: notebooks-volume
+          persistentVolumeClaim:
+            claimName: notebooks-pvc
+        - name: gx-volume
+          persistentVolumeClaim:
+            claimName: gx-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notebook-service
+spec:
+  selector:
+    app: notebook
+  ports:
+    - protocol: TCP
+      port: 8888
+      targetPort: 8888
+  type: NodePort

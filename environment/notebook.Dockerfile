@@ -30,6 +30,9 @@ RUN poetry config virtualenvs.create false && poetry install --no-dev
 RUN pip install jupyterlab ipykernel && \
     python -m ipykernel install --user --name=gx-in-the-ml-pipeline
 
+# Copy local notebooks into image
+COPY notebooks/ /notebooks/
+
 # Use the /notebooks directory for JupyterLab
 WORKDIR /notebooks
 

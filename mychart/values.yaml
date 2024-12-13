@@ -1,0 +1,19 @@
+persistence:
+  storageSize: 1Gi
+
+postgres:
+  user: gx_user
+  password: gx_user_password
+  database: demo
+
+images:
+  gxAgent: greatexpectations/agent:latest
+  datadocs: oswaldodocker/datadocs:latest
+  postgres: postgres:15.3-alpine
+  mlflow: oswaldodocker/mlflow:latest
+  notebook: oswaldodocker/notebook:v2.0
+
+# These should be empty by default and filled via --set-file or environment variables
+gxCloud:
+  organizationId: ""
+  accessToken: ""

@@ -1,18 +1,18 @@
 import collections
 import io
+import os
 import pathlib
 import random
 import shutil
 import zipfile
 from typing import Dict, List, Tuple, Union
 
+import demo_code.log as logger
 import great_expectations as gx
 import pandas as pd
 import requests
 import sqlalchemy
 import ucimlrepo
-
-import demo_code.log as logger
 
 log = logger.get_logger()
 
@@ -96,7 +96,8 @@ def download_uci_heart_disease_data(data_dir: pathlib.Path, force: bool) -> None
 
         log.debug("Fetching data...")
         if response.status_code == 200:
-            shutil.rmtree(data_dir)
+            if os.path.exists(data_dir):
+                shutil.rmtree(data_dir)
             data_dir.mkdir(parents=True, exist_ok=True)
 
             with zipfile.ZipFile(io.BytesIO(response.content)) as fh:
