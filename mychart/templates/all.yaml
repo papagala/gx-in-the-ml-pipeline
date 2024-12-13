@@ -7,7 +7,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: { { .Values.persistence.storageSize } }
+      storage: {{ .Values.persistence.storageSize }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -18,7 +18,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: { { .Values.persistence.storageSize } }
+      storage: {{ .Values.persistence.storageSize }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -29,7 +29,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: { { .Values.persistence.storageSize } }
+      storage: {{ .Values.persistence.storageSize }}
 ---
 apiVersion: v1
 kind: Secret
@@ -37,18 +37,8 @@ metadata:
   name: gx-secrets
 type: Opaque
 stringData:
-  GX_CLOUD_ORGANIZATION_ID:
-    {
-      {
-        required "A GX Cloud Organization ID is required" .Values.gxCloud.organizationId,
-      },
-    }
-  GX_CLOUD_ACCESS_TOKEN:
-    {
-      {
-        required "A GX Cloud Access Token is required" .Values.gxCloud.accessToken,
-      },
-    }
+  GX_CLOUD_ORGANIZATION_ID: {{ required "A GX Cloud Organization ID is required" .Values.gxCloud.organizationId }}
+  GX_CLOUD_ACCESS_TOKEN: {{ required "A GX Cloud Access Token is required" .Values.gxCloud.accessToken }}
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -86,7 +76,7 @@ spec:
     spec:
       containers:
         - name: gx-agent
-          image: { { .Values.images.gxAgent } }
+          image: {{ .Values.images.gxAgent }}
           env:
             - name: GX_CLOUD_ORGANIZATION_ID
               valueFrom:
@@ -115,7 +105,7 @@ spec:
     spec:
       containers:
         - name: datadocs
-          image: oswaldodocker/datadocs:latest
+          image: {{ .Values.images.datadocs }}
           imagePullPolicy: IfNotPresent
 ---
 apiVersion: v1
@@ -147,16 +137,16 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:15.3-alpine
+          image: {{ .Values.images.postgres }}
           ports:
             - containerPort: 5432
           env:
             - name: POSTGRES_USER
-              value: { { .Values.postgres.user } }
+              value: {{ .Values.postgres.user }}
             - name: POSTGRES_PASSWORD
-              value: { { .Values.postgres.password } }
+              value: {{ .Values.postgres.password }}
             - name: POSTGRES_DB
-              value: { { .Values.postgres.database } }
+              value: {{ .Values.postgres.database }}
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
@@ -199,7 +189,7 @@ spec:
     spec:
       containers:
         - name: mlflow
-          image: oswaldodocker/mlflow:latest
+          image: {{ .Values.images.mlflow }}
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
@@ -242,7 +232,7 @@ spec:
     spec:
       containers:
         - name: notebook
-          image: oswaldodocker/notebook:v2.0
+          image: {{ .Values.images.notebook }}
           imagePullPolicy: Always
           ports:
             - containerPort: 8888
