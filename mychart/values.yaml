@@ -8,10 +8,10 @@ postgres:
 
 images:
   gxAgent: greatexpectations/agent:latest
-  datadocs: oswaldodocker/datadocs:v4
+  datadocs: oswaldodocker/datadocs:v5
   postgres: postgres:15.3-alpine
-  mlflow: oswaldodocker/mlflow:v4
-  notebook: oswaldodocker/notebook:v4
+  mlflow: oswaldodocker/mlflow:v5
+  notebook: oswaldodocker/notebook:v5
 
 # These should be empty by default and filled via --set-file or environment variables
 gxCloud:

@@ -92,7 +92,7 @@ def download_uci_heart_disease_data(data_dir: pathlib.Path, force: bool) -> None
     if force:
         data_url = "https://archive.ics.uci.edu/static/public/45/heart+disease.zip"
 
-        response = requests.get(data_url)
+        response = requests.get(data_url, verify=False)
 
         log.debug("Fetching data...")
         if response.status_code == 200:
